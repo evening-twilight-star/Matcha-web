@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Next => Matcha Travel</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Satisfy&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --matcha-dark: #2d4021;
+            --matcha-main: #556b2f;
+            --matcha-light: #a3b18a;
+            --matcha-pale: #f0f2eb;
+            --matcha-cream: #fefae0; /* Warna krem susu */
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Poppins', 'Segoe UI', sans-serif; }
+
+        body {
+            /* GAMBAR WALLPAPER LATAR BELAKANG */
+            background-image: 
+                linear-gradient(rgba(45, 64, 33, 0.6), rgba(45, 64, 33, 0.8)), /* Overlay gelap agar teks terbaca */
+                url('https://images.unsplash.com/photo-1582736111160-c41938b8eb9f?w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed; /* Wallpaper tidak ikut scroll */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: var(--matcha-cream);
+        }
+
+        .login-container {
+            /* EFEK GLASSMORPHISM (KACA) */
+            background-color: rgba(255, 255, 255, 0.15); /* Transparan putih */
+            backdrop-filter: blur(10px); /* Efek blur di belakang */
+            -webkit-backdrop-filter: blur(10px);
+            padding: 50px;
+            border-radius: 25px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            width: 100%;
+            max-width: 420px;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.2); /* Border tipis transparan */
+        }
+
+        .logo-login {
+            font-family: 'Satisfy', cursive;
+            color: var(--matcha-cream);
+            font-size: 40px;
+            margin-bottom: 5px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .login-container p {
+            color: var(--matcha-light);
+            margin-bottom: 40px;
+            font-size: 14px;
+            letter-spacing: 1px;
+        }
+
+        .input-group {
+            margin-bottom: 25px;
+            position: relative;
+            text-align: left;
+        }
+
+        .input-group i {
+                /* GANTI DENGAN INI */
+            position: absolute;
+            left: 15px;
+            top: calc(50% + 15px); /* Menghitung tengah setelah label */
+            transform: translateY(-50%);
+            color: var(--matcha-light);
+            font-size: 18px;
+            pointer-events: none;
+        }
+        
+
+        .input-group label {
+            display: block;
+            color: var(--matcha-cream);
+            margin-bottom: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 15px 15px 15px 50px;
+            background-color: rgba(255, 255, 255, 0.1); /* Input transparan */
+            border: 2px solid rgba(255,255,255,0.2);
+            border-radius: 12px;
+            color: white;
+            outline: none;
+            transition: 0.3s;
+            font-size: 16px;
+        }
+
+        /* Hilangkan placeholder saat focus */
+        .input-group input:focus::placeholder { color: transparent; }
+        .input-group input::placeholder { color: rgba(255,255,255,0.5); }
+
+        .input-group input:focus {
+            border-color: var(--matcha-light);
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-login {
+            width: 100%;
+            padding: 15px;
+            background-color: var(--matcha-main);
+            border: none;
+            border-radius: 50px; /* Tombol lonjong */
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 15px;
+            box-shadow: 0 5px 15px rgba(85, 107, 47, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .btn-login:hover {
+            background-color: var(--matcha-dark);
+            transform: translateY(-3px); /* Sedikit terangkat */
+            box-shadow: 0 8px 20px rgba(45, 64, 33, 0.4);
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="logo-login">Matcha<span style="color: var(--matcha-main)">Travel</span></div>
+        <p>Silakan masuk untuk akses penuh</p>
+        <form id="loginForm">
+            <div class="input-group">
+                <label>NAMA PENGGUNA</label>
+                <i class="fas fa-user"></i>
+                <input type="text" id="username" placeholder="Masukkan Username" required>
+            </div>
+            <div class="input-group">
+                <label>KATA SANDI</label>
+                <i class="fas fa-lock"></i>
+                <input type="password" id="password" placeholder="" required>
+            </div>
+            <button type="submit" class="btn-login"> Next Slide</button>
+        </form>
+    </div>
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const user = document.getElementById('username').value;
+            const pass = document.getElementById('password').value;
+            if(user === "admin" && pass === "123") {
+                 window.location.href = "web.html"; // Pastikan nama file home benar
+            } else {
+                alert("Username atau Password salah (Coba admin/123)");
+            }
+        });
+    </script>
+</body>
+</html>

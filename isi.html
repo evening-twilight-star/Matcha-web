@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pesan Tiket - Matcha Travel</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Satisfy&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --matcha-dark: #2d4021;
+            --matcha-main: #556b2f;
+            --matcha-light: #a3b18a;
+            --matcha-pale: #f0f2eb;
+            --matcha-cream: #fefae0;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', 'Segoe UI', sans-serif; }
+
+        body {
+            /* GAMBAR WALLPAPER TEMA MACHA */
+            background-image: 
+                linear-gradient(rgba(240, 242, 235, 0.8), rgba(240, 242, 235, 0.9)),
+                url('https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 100vh;
+        }
+
+        nav {
+            background-color: var(--matcha-dark);
+            height: 70px;
+            display: flex;
+            align-items: center;
+            padding: 0 5%;
+            color: white;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 3px solid var(--matcha-main);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .logo { font-family: 'Satisfy', cursive; font-size: 32px; color: white; letter-spacing: 1px; margin-left: auto; margin-right: auto; }
+        .logo span { color: var(--matcha-main); }
+        .btn-back { position: absolute; left: 5%; color: var(--matcha-light); text-decoration: none; font-weight: bold; transition: 0.3s; }
+        .btn-back:hover { color: white; transform: translateX(-5px); }
+
+        .content {
+            margin-top: 120px;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            position: relative;
+        }
+
+        .travel-box {
+            background-color: rgba(255, 255, 255, 0.9); /* Transparan putih agar wallpaper terlihat */
+            backdrop-filter: blur(5px);
+            padding: 40px;
+            border-radius: 25px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+            width: 100%;
+            max-width: 850px;
+            border: 1px solid rgba(255,255,255,0.5);
+            border-top: 10px solid var(--matcha-main);
+        }
+
+        h2 { color: var(--matcha-dark); text-align: center; margin-bottom: 30px; text-transform: uppercase; font-size: 26px; letter-spacing: 2px; }
+
+        /* Mengganti tabel dengan grid modern */
+        .travel-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+
+        @media (max-width: 650px) {
+            .travel-grid { grid-template-columns: 1fr; }
+        }
+
+        .input-group { margin-bottom: 15px; }
+
+        label { display: block; font-weight: 600; color: var(--matcha-main); margin-bottom: 8px; font-size: 14px; letter-spacing: 1px; }
+
+        input[type="text"], select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid rgba(163, 177, 138, 0.2);
+            border-radius: 12px;
+            background-color: #fafafa;
+            outline: none;
+            transition: 0.3s;
+            font-size: 15px;
+        }
+
+        input[type="text"]:focus, select:focus {
+            border-color: var(--matcha-light);
+            background-color: white;
+            box-shadow: 0 0 10px rgba(85, 107, 47, 0.1);
+        }
+
+        .output-field { background-color: var(--matcha-cream) !important; font-weight: bold; color: var(--matcha-dark) !important; font-size: 16px; }
+
+        .btn-container { grid-column: span 2; text-align: center; margin-top: 30px; display: flex; justify-content: center; gap: 15px; }
+        @media (max-width: 650px) { .btn-container { grid-column: span 1; } }
+
+        input[type="button"], .btn-reset {
+            padding: 14px 35px;
+            border: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        input[type="button"] {
+            background-color: var(--matcha-main);
+            color: white;
+            box-shadow: 0 5px 15px rgba(85, 107, 47, 0.2);
+        }
+
+        input[type="button"]:hover { background-color: var(--matcha-dark); transform: translateY(-3px); box-shadow: 0 8px 20px rgba(45, 64, 33, 0.3); }
+
+        .btn-reset { background-color: #ccc; color: #555; text-decoration: none; display: inline-block; font-size: 15px; }
+        .btn-reset:hover { background-color: #bbb; }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="web.html" class="btn-back"><i class="fas fa-arrow-left"></i> KEMBALI</a>
+        <div class="logo">Matcha<span>Travel</span></div>
+    </nav>
+
+    <div class="content">
+        <i class="fas fa-leaf" style="position: absolute; top: 20px; right: 5%; font-size: 100px; color: var(--matcha-main); opacity: 0.03;"></i>
+
+        <div class="travel-box">
+            <h2><i class="fas fa-ticket-alt"></i> Reservasi Tiket Travel</h2>
+            <form name="fform"> 
+                <div class="travel-grid"> 
+                    <div class="input-section">
+                        <div class="input-group">
+                            <label>NAMA PENUMPANG</label>
+                            <input type="text" name="inama" placeholder="Ketik nama lengkap..."> 
+                        </div>
+                        <div class="input-group">
+                            <label>TUJUAN WISATA</label>
+                            <select name="itujuan"> 
+                               <option value="Jakarta">Uji, Kyoto (Premium)</option> 
+                               <option value="Cirebon">Shizuoka (Original)</option> 
+                               <option value="Tasikmalaya">Tasikmalaya (Organik)</option> 
+                            </select>   
+                        </div>
+                        <div class="input-group">
+                            <label>JUMLAH TIKET</label>
+                            <input type="text" name="ijumlah" placeholder="0"> 
+                        </div>
+                        <div class="input-group" style="margin-top: 15px;">
+                            <label style="display:inline; font-weight: bold; margin-left: 10px;"><input type="checkbox" name="imember" style="width: 18px; height: 18px; accent-color: var(--matcha-main);"> Member Khusus Matcha Club (Diskon 10%)</label>
+                        </div>
+                    </div> 
+                    
+                    <div class="output-section">
+                        <div class="input-group">
+                            <label>HARGA SATUAN (Rp)</label>
+                            <input type="text" name="otiket" class="output-field" readonly> 
+                        </div>
+                        <div class="input-group">
+                            <label>SUB TOTAL (Rp)</label>
+                            <input type="text" name="osub" class="output-field" readonly> 
+                        </div>
+                        <div class="input-group">
+                            <label>TOTAL PEMBAYARAN (Rp)</label>
+                            <input type="text" name="ototal" class="output-field" style="color: var(--matcha-main); font-size: 20px; border: 2px solid var(--matcha-light);" readonly>
+                        </div>
+                    </div> 
+                    
+                    <div class="btn-container"> 
+                        <input type="button" value="Hitung Total" onclick="hitungtotal()"> 
+                        <input type="reset" value="Reset Form" class="btn-reset">  
+                    </div> 
+                </div> 
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function hitungtotal() {
+            var tujuan = document.fform.itujuan.value;
+            var jumlahtiket = parseFloat(document.fform.ijumlah.value) || 0;
+            var ht = 0, sub = 0, diskon = 0, total = 0;
+
+            // Update harga untuk destinasi macha
+            if (tujuan == "Jakarta") ht = 500000; 
+            else if (tujuan == "Cirebon") ht = 350000; 
+            else ht = 250000; 
+
+            sub = jumlahtiket * ht; 
+            if (document.fform.imember.checked) diskon = 0.10 * sub; 
+            total = sub - diskon;  
+
+            document.fform.otiket.value = ht.toLocaleString('id-ID'); 
+            document.fform.osub.value = sub.toLocaleString('id-ID'); 
+            document.fform.ototal.value = total.toLocaleString('id-ID');   
+        } 
+    </script>
+</body>
+</html>
